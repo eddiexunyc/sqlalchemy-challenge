@@ -26,7 +26,8 @@ def welcome():
         f"/api/v1.0/precipitation <br/>"
         f"/api/v1.0/stations <br/>"
         f"/api/v1.0/tobs <br/>"
-        f"/api/v1.0/temperature/<start>/ <br/>"
+        f"for following: input the date as yyyy-mm-dd <br/>"
+        f"/api/v1.0/start_temp/<start>/ <br/>"
         f"/api/v1.0/temperature/<start>/<end>"
     
     )
@@ -74,7 +75,7 @@ def temp_observe():
 #Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
 #When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date.
 #When given the start and the end date, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive.
-@app.route("/api/v1.0/temperature/<start>")
+@app.route("/api/v1.0/start_temp/<start>")
 def start_temp(start = None):
     session = Session(engine)
     temp = [func.min(Measure.tobs), func.avg(Measure.tobs), func.max(Measure.tobs)]
